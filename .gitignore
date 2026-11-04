@@ -1,0 +1,6 @@
+myrag/
+data/repo_cache/
+data/vector_store/
+data/pdf_file/
+.env
+__pycache__/

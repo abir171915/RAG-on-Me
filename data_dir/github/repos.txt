@@ -1,0 +1,8 @@
+https://github.com/abir171915/Eye-disease-classification-with-PyTorch
+https://github.com/abir171915/ChestXray-Image-classification-using-PyTorch
+https://github.com/abir171915/Maximizing-Auditory-cortex-Output-Optimal-Source-Detector-Placement-on-the-scalp
+https://github.com/abir171915/N26-Income-and-Expences-prediction-
+https://github.com/abir171915/Human-BrainMRI-image-segmentation
+https://github.com/abir171915/DoorDash-delivery-time-prediction-
+https://github.com/abir171915/telco-churn-prediction
+https://github.com/abir171915/Time-Series-Forecasting-Energy-consumption-

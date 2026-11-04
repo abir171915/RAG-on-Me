@@ -4,6 +4,8 @@ from langchain_community.document_loaders import PyMuPDFLoader, TextLoader, Dire
 from langchain_community.document_loaders import Docx2txtLoader
 from langchain_community.document_loaders.excel import UnstructuredExcelLoader
 from langchain_community.document_loaders import JSONLoader
+from loading_git import load_github_repos
+
 
 
 
@@ -30,6 +32,14 @@ def load_all_documents(data_dir: str) -> List[Any]:
             documents.extend(loaded)
         except Exception as e:
             print(f"[ERROR] failed to load {pdf_file}: {e}")
+
+
+    # GitHub files
+
+    repo_list = data_path / "github" / "repos.txt"
+    if repo_list.exists():
+        documents.extend(load_github_repos(repo_list, data_path / "repo_cache"))
+
 
     
     return documents
