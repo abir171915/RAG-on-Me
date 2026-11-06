@@ -26,3 +26,6 @@ class EmbeddingPipeline:
 
         
         return embeddings
+    def embed_query(self, query: str) -> np.ndarray:
+        """Embed a single question with the same model used for the chunks."""
+        return self.model.encode([query])[0]
