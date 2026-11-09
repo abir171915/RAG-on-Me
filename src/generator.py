@@ -25,7 +25,7 @@ class RagGenerator:
         self.llm_model = ChatGroq(model = model_name, temperature = 0)
 
     def answer(self, question: str, top_k: int = 5) -> str:
-        queries = self.rewriter.rewrite(question) + [question]
+        queries = self.rewriter.rewrite(question) 
         hits = self.retriever.search_many(queries, top_k= top_k)
         context = "\n\n".join(
             f"[Source: {h['metadata'].get('repo') or Path(h['metadata'].get('source', '')).name}]\n{h['text']}"
