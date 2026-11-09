@@ -1,6 +1,7 @@
 from pathlib import Path
 from langchain_groq import ChatGroq
 from search import Retriever
+from query_rewriter import QueryRewriter
 
 
 Prompt = """You answer question about Md Abir Hossain's professional background.
@@ -18,12 +19,14 @@ Answer:"""
 class RagGenerator:
     """Retrieve relevant chunks and ask the LLM to answer from them."""
 
-    def __init__(self, retriever: Retriever, model_name: str = "openai/gpt-oss-20b"):
+    def __init__(self, retriever: Retriever, rewriter: QueryRewriter, model_name: str = "openai/gpt-oss-20b"):
         self.retriever = retriever
+        self.rewriter = rewriter
         self.llm_model = ChatGroq(model = model_name, temperature = 0)
 
-    def answer(self, question: str, top_k: int = 3) -> str:
-        hits = self.retriever.search(question, top_k= top_k)
+    def answer(self, question: str, top_k: int = 5) -> str:
+        queries = self.rewriter.rewrite(question) + [question]
+        hits = self.retriever.search_many(queries, top_k= top_k)
         context = "\n\n".join(
             f"[Source: {h['metadata'].get('repo') or Path(h['metadata'].get('source', '')).name}]\n{h['text']}"
             for h in hits
