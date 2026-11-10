@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, Optional
 from pydantic import SecretStr
 from langchain_groq import ChatGroq
 from rag_on_me.search import Retriever
@@ -27,12 +27,16 @@ class RagGenerator:
         self.rewriter = rewriter
         self.llm_model = ChatGroq(model = model_name, temperature = 0, api_key = api_key)
 
-    def answer(self, question: str, top_k: int = 5) -> str:
-        queries = self.rewriter.rewrite(question) 
+    def answer(self, question: str, top_k: int = 5) -> Dict[str, Any]:
+        queries = self.rewriter.rewrite(question)
         hits = self.retriever.search_many(queries, top_k= top_k)
+        sources = [h['metadata'].get('repo') or Path(h['metadata'].get('source', '')).name for h in hits]
         context = "\n\n".join(
-            f"[Source: {h['metadata'].get('repo') or Path(h['metadata'].get('source', '')).name}]\n{h['text']}"
-            for h in hits
+            f"[Source: {source}]\n{h['text']}"
+            for source, h in zip(sources, hits)
         )
         prompt = Prompt.format(context = context, question = question)
-        return self.llm_model.invoke(prompt).content
+        return {
+            "answer": self.llm_model.invoke(prompt).content,
+            "sources": list(dict.fromkeys(sources)),
+        }

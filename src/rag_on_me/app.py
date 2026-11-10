@@ -21,4 +21,4 @@ if __name__ == "__main__":
         if question.lower() in {"q", "quit", "exit"}:
             break
         if question:
-            print(rag.answer(question, top_k=settings.top_k))
+            print(rag.answer(question, top_k=settings.top_k)["answer"])

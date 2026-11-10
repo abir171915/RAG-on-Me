@@ -16,6 +16,8 @@ dependencies = [
     "sentence-transformers",
     "chromadb",
     "pydantic-settings",
+    "fastapi",
+    "uvicorn[standard]",
     "GitPython",
 ]
 
