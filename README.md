@@ -82,7 +82,7 @@ RAG/
 │   ├── repo_cache/           # local clones made by GitLoader (generated)
 │   └── vector_store/         # ChromaDB files (generated)
 ├── notebook/                 # exploration notebooks
-├── src/
+├── src/rag_on_me/            # the installable package
 │   ├── ingest.py             # entry point: build the vector store
 │   ├── app.py                # entry point: interactive Q&A
 │   ├── evaluate.py           # entry point: retrieval evaluation
@@ -95,7 +95,7 @@ RAG/
 │   ├── search.py
 │   ├── query_rewriter.py
 │   └── generator.py
-├── requirements.txt
+├── pyproject.toml            # package metadata and dependencies
 └── .env                      # GROQ_API_KEY (not committed)
 ```
 
@@ -110,8 +110,8 @@ RAG/
 python -m venv myrag
 .\myrag\Scripts\Activate.ps1
 
-# 2. Install dependencies
-pip install -r requirements.txt
+# 2. Install the package and its dependencies (editable mode)
+pip install -e .
 
 # 3. Add your API key to a .env file in the project root
 Set-Content -Path .env -Value "GROQ_API_KEY=your_key_here" -Encoding ascii
@@ -126,9 +126,9 @@ Set-Content -Path .env -Value "GROQ_API_KEY=your_key_here" -Encoding ascii
 Run all commands from the project root:
 
 ```powershell
-python src\ingest.py      # build the vector store (first run clones the repos)
-python src\app.py         # ask questions; type 'q' to quit
-python src\evaluate.py    # measure retrieval quality
+python -m rag_on_me.ingest      # build the vector store (first run clones the repos)
+python -m rag_on_me.app         # ask questions; type 'q' to quit
+python -m rag_on_me.evaluate    # measure retrieval quality
 ```
 
 Re-run `ingest.py` whenever the documents change. If you **remove** a document, delete `data_dir/vector_store/` first: upsert adds and updates entries but never deletes them.

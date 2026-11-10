@@ -1,11 +1,9 @@
-langchain
 langchain-core
 langchain-community
-pypdf
+langchain-text-splitters
+langchain-groq
 pymupdf
 sentence-transformers
-faiss-cpu
 chromadb
-langchain-groq
 python-dotenv
 GitPython

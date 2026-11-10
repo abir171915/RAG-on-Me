@@ -3,11 +3,11 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Set
 
 from dotenv import load_dotenv
-from embedding import EmbeddingPipeline
-from vector_store import VectorStore
-from search import Retriever
-from query_rewriter import QueryRewriter
-from eval_set import EVAL_SET
+from rag_on_me.embedding import EmbeddingPipeline
+from rag_on_me.vector_store import VectorStore
+from rag_on_me.search import Retriever
+from rag_on_me.query_rewriter import QueryRewriter
+from rag_on_me.eval_set import EVAL_SET
 
 load_dotenv()
 

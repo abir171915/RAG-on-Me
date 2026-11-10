@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-on-me"
+version = "0.1.0"
+description = "A RAG system that answers questions about my professional background"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain-core",
+    "langchain-community",
+    "langchain-text-splitters",
+    "langchain-groq",
+    "pymupdf",
+    "sentence-transformers",
+    "chromadb",
+    "python-dotenv",
+    "GitPython",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

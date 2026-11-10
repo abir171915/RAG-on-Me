@@ -4,7 +4,7 @@ from langchain_community.document_loaders import PyMuPDFLoader, TextLoader, Dire
 from langchain_community.document_loaders import Docx2txtLoader
 from langchain_community.document_loaders.excel import UnstructuredExcelLoader
 from langchain_community.document_loaders import JSONLoader
-from loading_git import load_github_repos
+from rag_on_me.loading_git import load_github_repos
 
 
 

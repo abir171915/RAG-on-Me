@@ -1,8 +1,6 @@
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from typing import List, Dict, Any, Tuple
-from data_loader import load_all_documents
-from chunking import split_documents
 
 class EmbeddingPipeline:
     """Handles document embedding generation using SentenceTransformer"""

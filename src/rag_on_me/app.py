@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
-from embedding import EmbeddingPipeline
-from vector_store import VectorStore
-from search import Retriever
-from generator import RagGenerator
-from query_rewriter import QueryRewriter
+from rag_on_me.embedding import EmbeddingPipeline
+from rag_on_me.vector_store import VectorStore
+from rag_on_me.search import Retriever
+from rag_on_me.generator import RagGenerator
+from rag_on_me.query_rewriter import QueryRewriter
 
 load_dotenv()
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 from langchain_groq import ChatGroq
-from search import Retriever
-from query_rewriter import QueryRewriter
+from rag_on_me.search import Retriever
+from rag_on_me.query_rewriter import QueryRewriter
 
 
 Prompt = """You answer question about Md Abir Hossain's professional background.

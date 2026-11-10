@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
-from embedding import EmbeddingPipeline
-from vector_store import VectorStore
+from rag_on_me.embedding import EmbeddingPipeline
+from rag_on_me.vector_store import VectorStore
 
 
 

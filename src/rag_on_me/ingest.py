@@ -1,7 +1,7 @@
-from data_loader import load_all_documents
-from chunking import split_documents
-from embedding import EmbeddingPipeline
-from vector_store import VectorStore
+from rag_on_me.data_loader import load_all_documents
+from rag_on_me.chunking import split_documents
+from rag_on_me.embedding import EmbeddingPipeline
+from rag_on_me.vector_store import VectorStore
 
 
 if __name__ == "__main__":
