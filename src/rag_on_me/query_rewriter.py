@@ -1,4 +1,5 @@
-from typing import List
+from typing import List, Optional
+from pydantic import SecretStr
 from langchain_groq import ChatGroq
 
 
@@ -19,8 +20,8 @@ Rewritten query:"""
 class QueryRewriter:
     """Rewrite a user question into a more specific search query."""
 
-    def __init__(self, model_name: str = "openai/gpt-oss-20b"):
-        self.llm = ChatGroq(model=model_name, temperature=0, reasoning_effort="low")
+    def __init__(self, model_name: str = "openai/gpt-oss-20b", api_key: Optional[SecretStr] = None):
+        self.llm = ChatGroq(model=model_name, temperature=0, reasoning_effort="low", api_key=api_key)
 
     def rewrite(self, question: str) -> List[str]:
         output = self.llm.invoke(REWRITE_PROMPT.format(question=question)).content

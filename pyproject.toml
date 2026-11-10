@@ -15,7 +15,7 @@ dependencies = [
     "pymupdf",
     "sentence-transformers",
     "chromadb",
-    "python-dotenv",
+    "pydantic-settings",
     "GitPython",
 ]
 

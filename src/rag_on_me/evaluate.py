@@ -2,16 +2,14 @@
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Set
 
-from dotenv import load_dotenv
+from rag_on_me.config import settings
 from rag_on_me.embedding import EmbeddingPipeline
 from rag_on_me.vector_store import VectorStore
 from rag_on_me.search import Retriever
 from rag_on_me.query_rewriter import QueryRewriter
 from rag_on_me.eval_set import EVAL_SET
 
-load_dotenv()
-
-TOP_K = 5
+TOP_K = settings.top_k
 
 
 def source_name(metadata: Dict[str, Any]) -> str:
@@ -48,7 +46,7 @@ def evaluate(name: str, retrieve: Callable[[str], List[Dict[str, Any]]]) -> Dict
 
 
 if __name__ == "__main__":
-    store = VectorStore()
+    store = VectorStore(str(settings.vector_store_dir), settings.collection_name)
 
     # Catch typos in expected source names before they silently score as misses
     known = known_sources(store)
@@ -56,8 +54,8 @@ if __name__ == "__main__":
     if unknown:
         raise SystemExit(f"Unknown sources in EVAL_SET: {unknown}\nKnown sources: {sorted(known)}")
 
-    retriever = Retriever(EmbeddingPipeline(), store)
-    rewriter = QueryRewriter()
+    retriever = Retriever(EmbeddingPipeline(settings.embedding_model), store)
+    rewriter = QueryRewriter(settings.rewriter_model, api_key=settings.groq_api_key)
 
     baseline = evaluate("baseline: original question only",
                         lambda q: retriever.search(q, top_k=TOP_K))

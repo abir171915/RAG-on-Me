@@ -1,4 +1,6 @@
 from pathlib import Path
+from typing import Optional
+from pydantic import SecretStr
 from langchain_groq import ChatGroq
 from rag_on_me.search import Retriever
 from rag_on_me.query_rewriter import QueryRewriter
@@ -19,10 +21,11 @@ Answer:"""
 class RagGenerator:
     """Retrieve relevant chunks and ask the LLM to answer from them."""
 
-    def __init__(self, retriever: Retriever, rewriter: QueryRewriter, model_name: str = "openai/gpt-oss-20b"):
+    def __init__(self, retriever: Retriever, rewriter: QueryRewriter, model_name: str = "openai/gpt-oss-20b",
+                 api_key: Optional[SecretStr] = None):
         self.retriever = retriever
         self.rewriter = rewriter
-        self.llm_model = ChatGroq(model = model_name, temperature = 0)
+        self.llm_model = ChatGroq(model = model_name, temperature = 0, api_key = api_key)
 
     def answer(self, question: str, top_k: int = 5) -> str:
         queries = self.rewriter.rewrite(question) 
