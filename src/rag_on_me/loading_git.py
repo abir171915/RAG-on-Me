@@ -34,6 +34,7 @@ def load_github_repos(repo_list_file: Path, clone_dir: Path) -> List[Any]:
             for doc in loaded:                         # tag so answers can cite the repo
                 doc.metadata["source_type"] = "github"
                 doc.metadata["repo"] = repo_name
+                doc.metadata["source_name"] = repo_name
             documents.extend(loaded)
         except Exception as e:
             print(f"[ERROR] failed to load repo {url}: {e}")

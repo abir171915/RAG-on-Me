@@ -14,7 +14,7 @@ TOP_K = settings.top_k
 
 def source_name(metadata: Dict[str, Any]) -> str:
     """Same naming the generator uses: repo name for GitHub, file name for PDFs."""
-    return metadata.get("repo") or Path(metadata.get("source", "")).name
+    return metadata.get("source_name", "unknown")
 
 
 def known_sources(store: VectorStore) -> Set[str]:

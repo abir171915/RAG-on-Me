@@ -1,0 +1,14 @@
+# secrets
+.env
+**/.env
+
+# local environment and tooling
+myrag/
+.git/
+**/__pycache__/
+*.pyc
+notebook/
+
+# ingest inputs: the image only needs the built vector store
+data_dir/pdf_file/
+data_dir/repo_cache/

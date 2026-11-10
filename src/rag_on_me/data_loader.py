@@ -29,6 +29,9 @@ def load_all_documents(data_dir: str) -> List[Any]:
         try: 
             loader = PyMuPDFLoader(str(pdf_file))
             loaded = loader.load()
+            for doc in loaded:                         # OS-independent name for citations
+                doc.metadata["source_type"] = "pdf"
+                doc.metadata["source_name"] = pdf_file.name
             documents.extend(loaded)
         except Exception as e:
             print(f"[ERROR] failed to load {pdf_file}: {e}")

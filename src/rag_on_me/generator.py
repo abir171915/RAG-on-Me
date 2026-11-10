@@ -30,7 +30,7 @@ class RagGenerator:
     def answer(self, question: str, top_k: int = 5) -> Dict[str, Any]:
         queries = self.rewriter.rewrite(question)
         hits = self.retriever.search_many(queries, top_k= top_k)
-        sources = [h['metadata'].get('repo') or Path(h['metadata'].get('source', '')).name for h in hits]
+        sources = [h['metadata'].get('source_name', 'unknown') for h in hits]
         context = "\n\n".join(
             f"[Source: {source}]\n{h['text']}"
             for source, h in zip(sources, hits)
