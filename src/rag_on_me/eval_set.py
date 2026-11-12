@@ -58,10 +58,14 @@ EVAL_SET = [
     },
     {
         "question": "What experience does Abir have with AI agents?",
-        "expected": ["Data Chat"],
+        "expected": ["aboutme.md", "CV_Md_Abir__AkerSolutions.pdf"],
     },
     {
         "question": "How was the eye infection classifier built?",
         "expected": ["Eye-disease-classification-with-PyTorch"],
+    },
+    {
+        "question": "Who is Abir?",
+        "expected": ["aboutme.md"],
     },
 ]

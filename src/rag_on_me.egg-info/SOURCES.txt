@@ -1,8 +1,10 @@
 README.md
 pyproject.toml
 src/rag_on_me/__init__.py
+src/rag_on_me/api.py
 src/rag_on_me/app.py
 src/rag_on_me/chunking.py
+src/rag_on_me/config.py
 src/rag_on_me/data_loader.py
 src/rag_on_me/embedding.py
 src/rag_on_me/eval_set.py
@@ -18,3 +20,4 @@ src/rag_on_me.egg-info/SOURCES.txt
 src/rag_on_me.egg-info/dependency_links.txt
 src/rag_on_me.egg-info/requires.txt
 src/rag_on_me.egg-info/top_level.txt
+src/rag_on_me/static/index.html

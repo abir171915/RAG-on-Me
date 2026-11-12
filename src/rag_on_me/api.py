@@ -35,7 +35,8 @@ async def lifespan(app: FastAPI):
     rewriter = QueryRewriter(settings.rewriter_model, api_key=settings.groq_api_key)
     app.state.store = store
     app.state.rag = RagGenerator(Retriever(embedder, store), rewriter,
-                                 model_name=settings.llm_model, api_key=settings.groq_api_key)
+                                 model_name=settings.llm_model, api_key=settings.groq_api_key,
+                                 pinned_chunks=store.get_by_source_type("profile"))
     yield
 
 

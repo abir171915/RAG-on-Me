@@ -5,5 +5,7 @@ langchain-groq
 pymupdf
 sentence-transformers
 chromadb
-python-dotenv
+pydantic-settings
+fastapi
+uvicorn[standard]
 GitPython
