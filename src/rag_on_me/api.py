@@ -1,8 +1,10 @@
 """HTTP API for the RAG system. Run with: uvicorn rag_on_me.api:app"""
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from rag_on_me.config import settings
@@ -38,6 +40,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Ask Abir", lifespan=lifespan)
+
+INDEX_HTML = Path(__file__).parent / "static" / "index.html"
+
+
+@app.get("/", include_in_schema=False)
+def index() -> FileResponse:
+    return FileResponse(INDEX_HTML)
 
 
 @app.get("/health")
